@@ -1,0 +1,78 @@
+@use "@/styles/variables" as *;
+
+$bg-color: #ffffff;
+$text-color: #333333;
+$primary-color: #2c3e50;
+$transition: 0.3s ease;
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100vh;
+  background: $sidebar-color;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transform: translateX(0);
+  transition: transform $transition;
+  z-index: 1000;
+
+  .toggle {
+    color: $primary-color;
+    display: none;
+  }
+
+  .nav {
+    margin-top: 2rem;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 1rem;
+
+        a {
+          display: block;
+          padding: 0.5rem;
+          color: $general-text-color;
+          text-decoration: none;
+          border-radius: 4px;
+          transition: background $transition, color $transition;
+          border: 1px solid transparent;
+
+          &:hover {
+            background: rgba($sidebar-color, 0.1);
+            border: 1px solid $general-text-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+
+    &.open {
+      transform: translateX(0);
+    }
+
+    .toggle {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: -3rem;
+      background: $sidebar-color;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+  }
+}
