@@ -12,7 +12,7 @@ $transition: 0.3s ease;
   width: 240px;
   height: 100vh;
   background: $sidebar-color;
-  padding: 1rem;
+  padding: 1rem 0;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(0);
   transition: transform $transition;
@@ -32,21 +32,27 @@ $transition: 0.3s ease;
 
       li {
         margin-bottom: 1rem;
-
+        &.active a {
+          color: $primary-color;
+          background-color: $bg-color;
+          font-size: large;
+          border: 1px solid transparent;
+        }
         a {
           display: block;
           padding: 0.5rem;
           color: $general-text-color;
           text-decoration: none;
           border-radius: 4px;
-          transition: background $transition, color $transition;
+          transition: background-color $transition, color $transition, font-size $transition;
           border: 1px solid transparent;
 
           &:hover {
-            background: rgba($sidebar-color, 0.1);
             border: 1px solid $general-text-color;
           }
         }
+
+        
       }
     }
   }

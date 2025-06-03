@@ -4,9 +4,12 @@ import { useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import styles from './Sidebar.module.scss'
 
+import { useRouter } from 'next/router'
+
 export default function Sidebar(){
   const [isOpen, setIsOpen] = useState(false)
-
+  const router = useRouter()
+  const isActive = (path: string) => router.pathname === path
   return (
     <aside className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
       {/* Botón hamburguesa / cerrar en mobile */}
@@ -17,14 +20,14 @@ export default function Sidebar(){
       >
         {isOpen ? <FiX /> : <FiMenu />}
       </button>
-
+      
       <nav className={styles.nav}>
         <ul>
-          <li>
+          <li className={ isActive("/")? styles.active: ""} >
             <Link href="/" onClick={() => setIsOpen(false)} >Inicio
             </Link>
           </li>
-          <li>
+          <li className={ isActive("/users")? styles.active: ""} >
             <Link href="/users" onClick={() => setIsOpen(false)}>Usuarios
             </Link>
           </li>
